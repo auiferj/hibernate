@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+  ~ Hibernate, Relational Persistence for Idiomatic Java
+  ~
+  ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later.
+  ~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
+  -->
+<!DOCTYPE hibernate-mapping
+  PUBLIC "-//Hibernate?Hibernate Mapping DTD//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+  <class name="com.google.hibernate.hibernate_2.domain.User" table="User">
+    <id name="id" column="id" type="int">
+    <generator class="native"></generator>
+    </id>
+    <property  name="name" column="name" type="string"/>
+	<!-- Set属性，set集合 -->
+	<set name="addressSet" table="user_addressSet">
+		<key column="userId"></key>
+		<element column="address" type="string"></element>
+	</set>
+	<!-- List属性，list集合 -->
+	<!-- list-index用于存放索引的列 -->
+	<list name="addressList" table="user_addressList">
+	<key column="userId"></key>
+	<list-index column="idx"></list-index>
+	<element column="address" type="string"></element>
+	</list>
+	<!-- Array属性，array集合，和list基本一致，只有标签不一致，为<array> -->
+	<!-- Map属性，map集合 -->
+	<map name="addressMap" table="user_addressMap">
+	<key column="userId"></key>
+	<map-key column="key_" type="string"></map-key>
+	<element column="address" type="string"></element>
+	</map>
+	<!-- Bag属性，和set基本一致，只有标签不一致，为<bag>,它是无序可重复 -->
+  </class>
+
+</hibernate-mapping>

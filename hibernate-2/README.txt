@@ -1,0 +1,1 @@
+集合属性：Set，List，Map
